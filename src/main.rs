@@ -24,9 +24,11 @@ fn main() {
             match args.part.as_str()
             {
                 "1" => day1::part1(),
+                "2" => day1::part2(),
                 "all" | &_ =>
                 {
                     day1::part1();
+                    day1::part2();
                 }
             }
         },
@@ -34,6 +36,7 @@ fn main() {
         {
             println!("Day 1");
             day1::part1();
+            day1::part2();
         }
     }
 }
