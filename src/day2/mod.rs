@@ -36,3 +36,38 @@ pub fn part1()
         println!("part 1: {}", my_score);
     }
 }
+
+// X = lose
+// Y = draw
+// Z = win
+
+fn get_us<'a>(them: &'a str, what: &'a str) -> &'a str
+{
+    let us = [
+        ("A", "X", "Z"), ("A", "Y", "X"), ("A", "Z", "Y"),
+        ("B", "X", "X"), ("B", "Y", "Y"), ("B", "Z", "Z"),
+        ("C", "X", "Y"), ("C", "Y", "Z"), ("C", "Z", "X")
+    ];
+
+    us.iter().find(|&i| i.0 == them && i.1 == what).unwrap().2
+}
+
+pub fn part2()
+{
+    if let Ok(lines) = utils::read_lines("./src/day2/input")
+    {
+        let mut my_score: u32 = 0;
+        for line in lines
+        {
+            if let Ok(l) = line
+            {
+                let mut parts = l.split_whitespace();
+                let them = parts.next().unwrap();
+                let us = get_us(them, parts.next().unwrap());
+                my_score += score(them, us);
+            }
+        }
+
+        println!("part 2: {}", my_score);
+    }
+}
